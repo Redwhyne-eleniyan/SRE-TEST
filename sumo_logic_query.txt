@@ -1,0 +1,6 @@
+_sourceCategory="prod/api"
+| parse "response_time=* " as response_time
+| parse "endpoint=* " as endpoint
+| where endpoint="/my-data-application/data" and response_time > 3000
+| count by _timeslice
+| where _count > 5
